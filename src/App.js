@@ -12,7 +12,7 @@ function App() {
       .then((response) => {
         setTasks(response.data)
       }).catch(error => {
-        alert(error);
+        alert(error.response ? error.response.data.error : error);
       })
   }, [])
 
