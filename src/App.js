@@ -4,8 +4,8 @@ import axios from 'axios';
 
 const URL= 'http://localhost/todo/index.php';
 
-function App() {
-  const [tasks, setTasks] = useState([]);
+function App() {  const [tasks, setTasks] = useState([]);
+  const [task, setTask] = useState('');
   
   useEffect(() => {
     axios.get(URL)
@@ -16,8 +16,32 @@ function App() {
       })
   }, [])
 
+  function save (e) {
+    e.preventDefault()
+    const json = JSON.stringify({ description: task })
+    axios
+      .post(URL + 'add.php', json, {
+        headers: {
+          'Content-Type': 'application(json'
+        }
+      })
+      .then(response => {
+        setTasks(tasks => [...tasks, response.data])
+        setTask('')
+      })
+      .catch(error => {
+        alert(error.response.data.error)
+      })
+  }
+
   return (
     <div className="container">
+      <h3>Todo list</h3>
+      <form onSubmit={save}>
+        <label>New task</label>
+        <input value={task} onChange={e => setTask(e.target.value)} />
+        <button>Save</button>
+      </form>  
       <ol>
         {tasks?.map(task => (
           <li key={task.id}>{task.description}</li>
@@ -26,5 +50,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;
