@@ -22,7 +22,7 @@ function App() {  const [tasks, setTasks] = useState([]);
     axios
       .post(URL + 'add.php', json, {
         headers: {
-          'Content-Type': 'application(json'
+          'Content-Type': 'application/json'
         }
       })
       .then(response => {
