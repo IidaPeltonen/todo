@@ -18,20 +18,18 @@ function App() {  const [tasks, setTasks] = useState([]);
 
   function save (e) {
     e.preventDefault()
-    const json = JSON.stringify({ description: task })
-    axios
-      .post(URL + 'add.php', json, {
+    const json = JSON.stringify({description: task})
+    axios.post(URL + 'add.php', json, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type' : 'application/json'
         }
       })
       .then(response => {
-        setTasks(tasks => [...tasks, response.data])
-        setTask('')
-      })
-      .catch(error => {
+        setTasks(tasks => [...tasks, response.data]);
+        setTask('');
+      }).catch(error => {
         alert(error.response.data.error)
-      })
+      });
   }
 
   return (
