@@ -61,7 +61,7 @@ function App() {
       <ol>
         {tasks?.map(task => (
           <li key={task.id}>{task.description}&nbsp;
-            <a herf="#" className="delete" onClick={() => remove(task.id)}>
+            <a href="#" className="delete" onClick={() => remove(task.id)}>
               Delete
             </a>
           </li>
