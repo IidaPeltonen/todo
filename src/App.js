@@ -7,7 +7,7 @@ const URL = 'http://localhost/todo/';
 function App() {
   const [tasks, setTasks] = useState([]);
   const [task, setTask] = useState('');
-  const [editTask, setEditTask] = useState('');
+  const [editTask, setEditTask] = useState(null);
   const [editDescription, setEditDescription] = useState('');
 
   useEffect(() => {
